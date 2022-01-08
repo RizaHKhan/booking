@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class RoomFactory extends Factory
+class RoomTypeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,9 +14,9 @@ class RoomFactory extends Factory
     public function definition()
     {
         return [
-            'name'         => $this->faker->name(),
-            'description'  => $this->faker->sentence(),
-            'room_type_id' => $this->faker->numberBetween(1, 5),
+            'size'   => array_rand(['One', 'Two', 'Three'], 1),
+            'amount' => $this->faker->numberBetween(100, 500),
+            'price'  => $this->faker->numberBetween(100, 500),
         ];
     }
 }
