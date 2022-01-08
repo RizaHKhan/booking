@@ -4,19 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Room extends Model
 {
     use HasFactory;
 
-    public function hotel(): HasOne
+    public function hotel(): BelongsTo
     {
-        return $this->hasOne(Hotel::class, 'id', 'hotel_id');
+        return $this->belongsTo(Hotel::class);
     }
 
-    public function roomType(): HasOne
+    public function roomType(): BelongsTo
     {
-        return $this->hasOne(RoomType::class, 'id', 'room_type_id');
+        return $this->belongsTo(RoomType::class);
+    }
+
+    public function reservations(): BelongsToMany
+    {
+        return $this->belongsToMany(Reservation::class);
     }
 }
